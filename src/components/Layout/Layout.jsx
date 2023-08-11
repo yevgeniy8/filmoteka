@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import logo from '../../images/Frame 770814.svg';
+import temaLight from '../../images/desktop/Component 20.svg';
+import temaDark from '../../images/desktop/Group 770844.svg';
 
 import {
     LinkLogo,
@@ -10,9 +12,11 @@ import {
     Navigation,
     NavigationLink,
     Background,
+    Footer,
 } from './Layout.styled';
 
 const Layout = () => {
+    const [tema, setTema] = useState(true);
     return (
         <Background>
             <Container>
@@ -31,13 +35,24 @@ const Layout = () => {
                         </NavigationLink>
                     </Navigation>
                     <div>
-                        <button>Peremikach</button>
+                        {tema ? (
+                            <Background onClick={() => setTema(false)}>
+                                <img src={temaLight} alt="" />
+                            </Background>
+                        ) : (
+                            <Background onClick={() => setTema(true)}>
+                                <img src={temaDark} alt="" />
+                            </Background>
+                        )}
+                        {/* <button>Peremikach</button> */}
                     </div>
                 </Header>
             </Container>
 
+            <Outlet />
+
             <Container>
-                <Outlet />
+                <Footer>Yevgeniy Utkin github</Footer>
             </Container>
         </Background>
     );

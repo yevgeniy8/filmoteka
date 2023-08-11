@@ -53,5 +53,15 @@ export const NavigationLink = styled(NavLink)`
     letter-spacing: 0em;
     text-align: center;
     text-transform: uppercase;
-    color: #f87719;
+    color: #b7b7b7;
+
+    &.active {
+        color: #f87719;
+    }
+`;
+
+export const Footer = styled.footer`
+    margin-top: 100px;
+    margin-bottom: 80px;
+    text-align: center;
 `;

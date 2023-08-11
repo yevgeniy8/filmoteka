@@ -27,7 +27,31 @@ export const getDetaliesInfMovie = async id => {
 
 export const getTrendWeekMovies = async () => {
     const response = await axios(
-        'https://api.themoviedb.org/3/trending/all/week?language=en-US',
+        'https://api.themoviedb.org/3/trending/movie/week?language=en-US',
+        options
+    );
+    return response.data;
+};
+
+export const getUpcomingMovies = async () => {
+    const response = await axios.get(
+        'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1',
+        options
+    );
+    return response.data;
+};
+
+export const getGenre = async () => {
+    const response = await axios.get(
+        'https://api.themoviedb.org/3/genre/movie/list?language=en',
+        options
+    );
+    return response.data;
+};
+
+export const getMoviesForName = async movie => {
+    const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
         options
     );
     return response.data;
