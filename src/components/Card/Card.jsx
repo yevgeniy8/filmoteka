@@ -14,7 +14,7 @@ import {
     Genre,
 } from './Card.styled';
 
-const Card = ({ item }) => {
+const Card = ({ item, setFavoriteMovie }) => {
     const [genre, setGenre] = useState([]);
     const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -79,6 +79,7 @@ const Card = ({ item }) => {
                         movie={item}
                         toggleModal={toggleModal}
                         genre={genre}
+                        setFavoriteMovie={setFavoriteMovie}
                     />
                 </Modal>
             )}

@@ -15,7 +15,15 @@ import {
     WrapperText,
 } from './UpcomingContentSection.styled';
 
-const UpcomingContentSection = ({ movie, genre, width, modal }) => {
+const UpcomingContentSection = ({
+    movie,
+    genre,
+    width,
+    modal,
+    setFavoriteMovies,
+}) => {
+    const [inFavorite, setInFavorite] = useState(false);
+
     const [favoriteMovie, setFavoriteMovie] = useState(() => {
         return JSON.parse(localStorage.getItem('favoriteMovie')) || [];
     });
@@ -24,12 +32,31 @@ const UpcomingContentSection = ({ movie, genre, width, modal }) => {
         localStorage.setItem('favoriteMovie', JSON.stringify(favoriteMovie));
     }, [favoriteMovie]);
 
-    const handleAddLibrary = () => {
+    useEffect(() => {
+        if (
+            favoriteMovie.filter(favoriteMovie => movie.id === favoriteMovie.id)
+                .length
+        ) {
+            setInFavorite(true);
+        }
+    }, [favoriteMovie, movie.id]);
+
+    const handleClickLibrary = () => {
         if (favoriteMovie.filter(item => item.id === movie.id).length) {
+            setInFavorite(false);
+
+            setFavoriteMovie(prevState => {
+                return prevState.filter(item => item.id !== movie.id);
+            });
+
+            setFavoriteMovies(prevState => {
+                return prevState.filter(item => item.id !== movie.id);
+            });
+
             return;
         }
+        setInFavorite(true);
         setFavoriteMovie(prevState => [...prevState, movie]);
-        console.log(favoriteMovie);
     };
 
     return (
@@ -66,8 +93,9 @@ const UpcomingContentSection = ({ movie, genre, width, modal }) => {
             <OverviewAbout width={width} modal={modal}>
                 {movie.overview}
             </OverviewAbout>
-            <ButtonLibrary onClick={handleAddLibrary}>
-                Add to my library
+
+            <ButtonLibrary onClick={handleClickLibrary}>
+                {inFavorite ? 'Delete from library' : ' Add to my library'}
             </ButtonLibrary>
         </WrapperText>
     );

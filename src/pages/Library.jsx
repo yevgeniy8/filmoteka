@@ -9,14 +9,17 @@ const Library = () => {
     });
 
     useEffect(() => {
-        const favoriteMovie = JSON.parse(localStorage.getItem('favoriteMovie'));
-        setFavoriteMovie(favoriteMovie);
+        const favorite = JSON.parse(localStorage.getItem('favoriteMovie'));
+        setFavoriteMovie(favorite);
     }, []);
 
     return (
         <div>
             <Hero />
-            <MoviesList movies={favoriteMovie} />
+            <MoviesList
+                movies={favoriteMovie}
+                setFavoriteMovie={setFavoriteMovie}
+            />
         </div>
     );
 };

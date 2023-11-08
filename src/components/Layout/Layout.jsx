@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import logo from '../../images/Frame 770814.svg';
 import temaLight from '../../images/desktop/Component 20.svg';
 import temaDark from '../../images/desktop/Group 770844.svg';
