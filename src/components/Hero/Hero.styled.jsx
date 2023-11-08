@@ -60,4 +60,7 @@ export const Button = styled.button`
     padding: 12px 24px 12px 24px;
     border-radius: 74px;
     gap: 10px;
+
+    outline: none;
+    border: none;
 `;

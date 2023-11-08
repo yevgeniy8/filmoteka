@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import rating from 'helper/rating';
 import { getGenre } from 'server/api';
 
+import Modal from 'components/Modal/Modal';
+import ModalInformation from 'components/ModalInformation/ModalInformation';
+
 import {
     Li,
     InfoCard,
@@ -13,6 +16,7 @@ import {
 
 const Card = ({ item }) => {
     const [genre, setGenre] = useState([]);
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     useEffect(() => {
         const getGen = async () => {
@@ -34,17 +38,22 @@ const Card = ({ item }) => {
         getGen();
     }, [item.genre_ids]);
 
-    console.log(item);
+    const toggleModal = () => {
+        setIsOpenModal(prevState => !prevState);
+    };
 
     return (
         <Li>
-            <img
-                src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                alt=""
-                width={395}
-                height={574}
-            />
-            <Gradient></Gradient>
+            <div onClick={toggleModal}>
+                <img
+                    src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    alt=""
+                    width={395}
+                    height={574}
+                />
+                <Gradient></Gradient>
+            </div>
+
             <InfoCard>
                 <Title>{item.title}</Title>
                 <WrapperInfo>
@@ -64,6 +73,15 @@ const Card = ({ item }) => {
                     <img src={rating(item.vote_average)} alt="" width={106} />
                 </WrapperInfo>
             </InfoCard>
+            {isOpenModal && (
+                <Modal toggleModal={toggleModal}>
+                    <ModalInformation
+                        movie={item}
+                        toggleModal={toggleModal}
+                        genre={genre}
+                    />
+                </Modal>
+            )}
         </Li>
     );
 };

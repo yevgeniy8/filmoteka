@@ -19,6 +19,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;

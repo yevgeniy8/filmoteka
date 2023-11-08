@@ -4,6 +4,8 @@ import { getGenre } from 'server/api';
 
 import { Container } from 'components/Layout/Layout.styled';
 
+import UpcomingContentSection from 'components/UpcomingContentSection/UpcomingContentSection';
+
 import {
     WrapperContent,
     Section,
@@ -11,18 +13,18 @@ import {
     WrapperImage,
     Image,
     Gradient,
-    Title,
-    P,
-    PLast,
-    DateSpan,
-    Votu,
-    WrapperVotu,
-    Popularity,
-    Genre,
-    About,
-    OverviewAbout,
-    ButtonLibrary,
-    WrapperText,
+    // Title,
+    // P,
+    // PLast,
+    // DateSpan,
+    // Votu,
+    // WrapperVotu,
+    // Popularity,
+    // Genre,
+    // About,
+    // OverviewAbout,
+    // ButtonLibrary,
+    // WrapperText,
 } from './UpcomingSection.styles';
 
 const UpcomingSection = () => {
@@ -75,7 +77,9 @@ const UpcomingSection = () => {
                         <Gradient></Gradient>
                     </WrapperImage>
 
-                    <WrapperText>
+                    <UpcomingContentSection movie={movie} genre={genre} />
+
+                    {/* <WrapperText>
                         <Title>{movie.title}</Title>
                         <P>
                             Release date{' '}
@@ -111,7 +115,7 @@ const UpcomingSection = () => {
                         <About>About</About>
                         <OverviewAbout>{movie.overview}</OverviewAbout>
                         <ButtonLibrary>Add to my library</ButtonLibrary>
-                    </WrapperText>
+                    </WrapperText> */}
                 </WrapperContent>
             </Container>
         </Section>
