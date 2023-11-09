@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Hero from 'components/Hero/Hero';
 import MoviesList from 'components/MoviesList/MoviesList';
+import GenreSelect from 'components/GenreSelect/GenreSelect';
+import { useSelector } from 'react-redux';
 
 const Library = () => {
-    const [favoriteMovie, setFavoriteMovie] = useState(() => {
-        return JSON.parse(localStorage.getItem('favoriteMovie')) || [];
-    });
+    const [selectedGenre, setSelectedGenre] = useState('');
 
-    useEffect(() => {
-        const favorite = JSON.parse(localStorage.getItem('favoriteMovie'));
-        setFavoriteMovie(favorite);
-    }, []);
+    const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
+    console.log(favoriteMovies);
+
+    const changeSelectedGenre = genre => {
+        setSelectedGenre(genre);
+    };
 
     return (
         <div>
             <Hero />
-            <MoviesList
-                movies={favoriteMovie}
-                setFavoriteMovie={setFavoriteMovie}
-            />
+            <GenreSelect changeSelectedGenre={changeSelectedGenre} />
+            <MoviesList movies={favoriteMovies} selectedGenre={selectedGenre} />
         </div>
     );
 };

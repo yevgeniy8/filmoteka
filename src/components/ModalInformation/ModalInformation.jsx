@@ -4,7 +4,7 @@ import UpcomingContentSection from 'components/UpcomingContentSection/UpcomingCo
 import { WrapperModal, ImageWrapper, Img } from './ModalInformation.styled';
 // import { getGenre } from 'server/api';
 
-const ModalInformation = ({ movie, genre, setFavoriteMovie }) => {
+const ModalInformation = ({ movie, genre }) => {
     return (
         <WrapperModal>
             <ImageWrapper>
@@ -23,7 +23,6 @@ const ModalInformation = ({ movie, genre, setFavoriteMovie }) => {
                 width={'small'}
                 genre={genre}
                 modal={'modal'}
-                setFavoriteMovies={setFavoriteMovie}
             />
         </WrapperModal>
     );

@@ -15,48 +15,69 @@ import {
     WrapperText,
 } from './UpcomingContentSection.styled';
 
-const UpcomingContentSection = ({
-    movie,
-    genre,
-    width,
-    modal,
-    setFavoriteMovies,
-}) => {
+import { addFavorite, removeFavorite } from 'redux/favorite/favoriteSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
+const UpcomingContentSection = ({ movie, genre, width, modal }) => {
     const [inFavorite, setInFavorite] = useState(false);
 
-    const [favoriteMovie, setFavoriteMovie] = useState(() => {
-        return JSON.parse(localStorage.getItem('favoriteMovie')) || [];
-    });
+    // const [favoriteMovie, setFavoriteMovie] = useState(() => {
+    //     return JSON.parse(localStorage.getItem('favoriteMovie')) || [];
+    // });
+
+    // useEffect(() => {
+    //     localStorage.setItem('favoriteMovie', JSON.stringify(favoriteMovie));
+    // }, [favoriteMovie]);
+
+    // useEffect(() => {
+    //     if (
+    //         favoriteMovie?.filter(
+    //             favoriteMovie => movie.id === favoriteMovie.id
+    //         ).length
+    //     ) {
+    //         setInFavorite(true);
+    //     }
+    // }, [favoriteMovie, movie.id]);
+
+    // const handleClickLibrary = () => {
+    //     if (favoriteMovie?.filter(item => item.id === movie.id).length) {
+    //         console.log('object');
+    //         setInFavorite(false);
+
+    //         setFavoriteMovie(prevState => {
+    //             return prevState.filter(item => item.id !== movie.id);
+    //         });
+
+    //         // setFavoriteMovies(prevState => {
+    //         //     return prevState.filter(item => item.id !== movie.id);
+    //         // });
+
+    //         return;
+    //     }
+
+    //     setInFavorite(true);
+    //     setFavoriteMovie(prevState => [...prevState, movie]);
+    // };
+
+    const dispatch = useDispatch();
+
+    const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
 
     useEffect(() => {
-        localStorage.setItem('favoriteMovie', JSON.stringify(favoriteMovie));
-    }, [favoriteMovie]);
-
-    useEffect(() => {
-        if (
-            favoriteMovie.filter(favoriteMovie => movie.id === favoriteMovie.id)
-                .length
-        ) {
+        if (favoriteMovies.filter(item => movie.id === item.id).length) {
             setInFavorite(true);
         }
-    }, [favoriteMovie, movie.id]);
+    }, [favoriteMovies, movie.id]);
 
     const handleClickLibrary = () => {
-        if (favoriteMovie.filter(item => item.id === movie.id).length) {
+        if (favoriteMovies.filter(item => item.id === movie.id).length) {
+            dispatch(removeFavorite(movie.id));
             setInFavorite(false);
-
-            setFavoriteMovie(prevState => {
-                return prevState.filter(item => item.id !== movie.id);
-            });
-
-            setFavoriteMovies(prevState => {
-                return prevState.filter(item => item.id !== movie.id);
-            });
-
-            return;
+        } else {
+            dispatch(addFavorite(movie));
+            setInFavorite(true);
         }
-        setInFavorite(true);
-        setFavoriteMovie(prevState => [...prevState, movie]);
+        console.log('object');
     };
 
     return (

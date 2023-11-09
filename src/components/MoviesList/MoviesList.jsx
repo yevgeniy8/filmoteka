@@ -3,7 +3,7 @@ import { Container } from 'components/Layout/Layout.styled';
 import { Ul } from './MovieList.styled';
 import Card from 'components/Card/Card';
 
-const MoviesList = ({ movies, setFavoriteMovie }) => {
+const MoviesList = ({ movies, selectedGenre }) => {
     return (
         <Container>
             <Ul>
@@ -20,7 +20,7 @@ const MoviesList = ({ movies, setFavoriteMovie }) => {
                     <Card
                         key={item.id}
                         item={item}
-                        setFavoriteMovie={setFavoriteMovie}
+                        selectedGenre={selectedGenre}
                     />
                 ))}
             </Ul>
