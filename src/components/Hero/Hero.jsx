@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTrendDayMovies, getDetaliesInfMovie } from 'server/api';
+import { getTrendDayMovies, getDetaliesInfMovie, getGenre } from 'server/api';
 import {
     HeroBack,
     ImageRating,
@@ -8,12 +8,19 @@ import {
     Description,
     WrapperButton,
     Button,
+    ButtonSecond,
 } from './Hero.styled';
 
 import rating from 'helper/rating';
+import Modal from 'components/Modal/Modal';
+import ModalInformation from 'components/ModalInformation/ModalInformation';
 
 const Hero = () => {
     const [movie, setMovie] = useState({});
+    const [isShowModal, setIsShowModal] = useState(false);
+    const [genre, setGenre] = useState([]);
+
+    console.log(movie);
 
     useEffect(() => {
         const getMovie = async () => {
@@ -30,6 +37,37 @@ const Hero = () => {
 
         getMovie();
     }, []);
+
+    // useEffect(() => {
+    //     const getGen = async () => {
+    //         const { genres } = await getGenre();
+
+    //         console.log(movie);
+
+    //         const genreee = [];
+
+    //         for (let i = 0; i < genres.length; i++) {
+    //             for (let j = 0; j < movie.genre_ids.length; j++) {
+    //                 if (genres[i].id === movie.genre_ids[j]) {
+    //                     genreee.push(genres[i].name);
+    //                 }
+    //             }
+    //         }
+
+    //         setGenre(genreee);
+    //     };
+
+    //     getGen();
+    // }, [movie, movie.genre_ids]);
+
+    useEffect(() => {
+        const genresArr = movie.genres?.map(item => item.name);
+        setGenre(genresArr);
+    }, [movie.genres]);
+
+    const toggleModal = () => {
+        setIsShowModal(prevState => !prevState);
+    };
 
     return (
         <div>
@@ -49,13 +87,24 @@ const Hero = () => {
                     </Description>
                     <WrapperButton>
                         <Button>Watch trailer</Button>
-                        <Button>More details</Button>
+                        <ButtonSecond onClick={toggleModal}>
+                            More details
+                        </ButtonSecond>
                     </WrapperButton>
                 </Information>
                 <HeroBack
                     src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                 ></HeroBack>
             </div>
+            {isShowModal && (
+                <Modal toggleModal={toggleModal}>
+                    <ModalInformation
+                        movie={movie}
+                        toggleModal={toggleModal}
+                        genre={genre}
+                    />
+                </Modal>
+            )}
         </div>
     );
 };

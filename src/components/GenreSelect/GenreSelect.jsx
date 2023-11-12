@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'components/Layout/Layout.styled';
 import { getGenre } from 'server/api';
+import { SelectGenre, Option } from './GenreSelect.styled';
 
 const GenreSelect = ({ changeSelectedGenre }) => {
     const [genre, setGenre] = useState([]);
@@ -24,19 +25,27 @@ const GenreSelect = ({ changeSelectedGenre }) => {
         changeSelectedGenre(e.target.value);
     };
 
+    const hangleClear = () => {
+        changeSelectedGenre('');
+    };
+
     return (
         <Container>
             <form action="">
-                <select name="genre" id="" onChange={handleChangeGenre}>
+                <SelectGenre name="genre" id="" onChange={handleChangeGenre}>
                     <option key="0" value="Genre">
                         Genre
                     </option>
                     {genre.map(item => (
-                        <option key={item.id} value={item.name}>
+                        <Option key={item.id} value={item.name}>
                             {item.name}
-                        </option>
+                        </Option>
                     ))}
-                </select>
+                </SelectGenre>
+
+                <button type="button" onClick={hangleClear}>
+                    Clear
+                </button>
             </form>
         </Container>
     );

@@ -57,10 +57,32 @@ export const WrapperButton = styled.div`
 export const Button = styled.button`
     width: 139px;
     height: 48px;
-    padding: 12px 24px 12px 24px;
+    /* padding: 12px 24px 12px 24px; */
+    /* padding: 12px 0 12px 0; */
+
     border-radius: 74px;
     gap: 10px;
 
     outline: none;
     border: none;
+
+    background: var(
+        --linear,
+        linear-gradient(141deg, #ffc226 9.4%, #f84119 91.91%)
+    );
+
+    color: #111;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+`;
+
+export const ButtonSecond = styled(Button)`
+    border: 1px solid #fff;
+    background: #111;
+
+    color: #fff;
 `;

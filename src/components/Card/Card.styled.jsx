@@ -52,3 +52,9 @@ export const WrapperInfo = styled.div`
     display: flex;
     justify-content: space-between;
 `;
+
+export const Img = styled.img`
+    width: 395px;
+    height: 574px;
+    border-radius: 5px;
+`;

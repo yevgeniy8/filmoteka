@@ -12,6 +12,7 @@ import {
     Gradient,
     WrapperInfo,
     Genre,
+    Img,
 } from './Card.styled';
 
 const Card = ({ item, selectedGenre }) => {
@@ -21,6 +22,12 @@ const Card = ({ item, selectedGenre }) => {
     useEffect(() => {
         const getGen = async () => {
             const { genres } = await getGenre();
+
+            if (item.genres) {
+                const genr = item.genres.map(genre => genre.name);
+                setGenre(genr);
+                return;
+            }
 
             const genreee = [];
 
@@ -36,7 +43,7 @@ const Card = ({ item, selectedGenre }) => {
         };
 
         getGen();
-    }, [item.genre_ids]);
+    }, [item.genre_ids, item.genres]);
 
     const toggleModal = () => {
         setIsOpenModal(prevState => !prevState);
@@ -45,11 +52,9 @@ const Card = ({ item, selectedGenre }) => {
     return (
         <Li>
             <div onClick={toggleModal}>
-                <img
+                <Img
                     src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                     alt=""
-                    width={395}
-                    height={574}
                 />
                 <Gradient></Gradient>
             </div>

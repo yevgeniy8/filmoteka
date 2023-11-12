@@ -12,7 +12,7 @@ export const LinkLogo = styled(NavLink)`
 `;
 
 export const Container = styled.div`
-    width: 1216px;
+    width: 1233px;
     margin: 0 auto;
     padding-left: 8px;
     padding-right: 8px;
