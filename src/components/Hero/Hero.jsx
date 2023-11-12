@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTrendDayMovies, getDetaliesInfMovie, getGenre } from 'server/api';
+import { getTrendDayMovies, getDetaliesInfMovie } from 'server/api';
 import {
     HeroBack,
     ImageRating,
