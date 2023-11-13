@@ -20,7 +20,7 @@ export const HeroBack = styled.div`
 `;
 
 export const Information = styled.div`
-    max-width: 385px;
+    max-width: 464px;
     position: absolute;
     padding-top: 118px;
     margin-left: 135px;
@@ -78,6 +78,8 @@ export const Button = styled.button`
     font-style: normal;
     font-weight: 500;
     line-height: 24px; /* 150% */
+
+    cursor: pointer;
 `;
 
 export const ButtonSecond = styled(Button)`

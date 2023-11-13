@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { Backdrop, ModalWrapper } from './Modal.styled';
+import { Backdrop, ModalWrapper, ModalClose } from './Modal.styled';
 
 import { createPortal } from 'react-dom';
 
+import modalClose from '../../images/close-modal.svg';
+
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ children, toggleModal }) => {
+const Modal = ({ children, toggleModal, modal }) => {
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
 
@@ -24,9 +26,29 @@ const Modal = ({ children, toggleModal }) => {
         }
     };
 
+    const handleCloseModal = () => {
+        toggleModal();
+    };
+
     return createPortal(
         <Backdrop onClick={handleClickBackdrop}>
-            <ModalWrapper>{children}</ModalWrapper>
+            <ModalWrapper>
+                {children}
+                {!modal && (
+                    <ModalClose
+                        src={modalClose}
+                        alt=""
+                        onClick={handleCloseModal}
+                    />
+                )}
+            </ModalWrapper>
+            {modal && (
+                <ModalClose
+                    src={modalClose}
+                    alt=""
+                    onClick={handleCloseModal}
+                />
+            )}
         </Backdrop>,
         modalRoot
     );

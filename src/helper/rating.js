@@ -1,3 +1,4 @@
+import rating2_5 from '../images/desktop/cards/rating2.5.svg';
 import rating3 from '../images/desktop/cards/rating3.svg';
 import rating3_5 from '../images/desktop/cards/rating3.5.svg';
 import rating4 from '../images/desktop/cards/rating3.5.svg';
@@ -23,7 +24,7 @@ const rating = rat => {
         return;
     } else if (rat > 5 && rat <= 6) {
         // console.log('5');
-        return;
+        return rating2_5;
     } else if (rat > 6 && rat <= 7) {
         // console.log('6');
         return rating3;

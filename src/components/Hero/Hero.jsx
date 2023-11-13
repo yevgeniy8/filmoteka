@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getTrendDayMovies, getDetaliesInfMovie } from 'server/api';
+import {
+    getTrendDayMovies,
+    getDetaliesInfMovie,
+    getMovieTrailer,
+} from 'server/api';
 import {
     HeroBack,
     ImageRating,
@@ -19,8 +23,9 @@ const Hero = () => {
     const [movie, setMovie] = useState({});
     const [isShowModal, setIsShowModal] = useState(false);
     const [genre, setGenre] = useState([]);
-
-    console.log(movie);
+    // const [trailer, setTrailer] = useState('');
+    const [keyTrailer, setKeyTrailer] = useState('');
+    const [isShowTrailer, setIsShowTrailer] = useState(false);
 
     useEffect(() => {
         const getMovie = async () => {
@@ -32,41 +37,50 @@ const Hero = () => {
             );
             setMovie(details);
 
-            rating(7.2);
+            // const response = await getMovieTrailer(details.id);
+            // console.log(response);
+
+            // rating(7.2);
         };
 
         getMovie();
     }, []);
-
-    // useEffect(() => {
-    //     const getGen = async () => {
-    //         const { genres } = await getGenre();
-
-    //         console.log(movie);
-
-    //         const genreee = [];
-
-    //         for (let i = 0; i < genres.length; i++) {
-    //             for (let j = 0; j < movie.genre_ids.length; j++) {
-    //                 if (genres[i].id === movie.genre_ids[j]) {
-    //                     genreee.push(genres[i].name);
-    //                 }
-    //             }
-    //         }
-
-    //         setGenre(genreee);
-    //     };
-
-    //     getGen();
-    // }, [movie, movie.genre_ids]);
 
     useEffect(() => {
         const genresArr = movie.genres?.map(item => item.name);
         setGenre(genresArr);
     }, [movie.genres]);
 
+    // useEffect(() => {
+    //     const getTrailer = async () => {
+    //         const response = await getMovieTrailer(movie.id);
+    //         console.log(response);
+    //         console.log(movie);
+    //     };
+
+    //     getTrailer();
+    // });
+
     const toggleModal = () => {
         setIsShowModal(prevState => !prevState);
+    };
+
+    const handleGetTrailer = async () => {
+        if (isShowTrailer === true) {
+            setIsShowTrailer(false);
+            return;
+        }
+        setIsShowTrailer(true);
+        const response = await getMovieTrailer(movie.id);
+        console.log(response.results);
+
+        const randomKey = Math.floor(
+            Math.random() * (response.results.length - 1 - 1 + 1) + 1
+        );
+
+        console.log(response.results[randomKey].key);
+
+        setKeyTrailer(response.results[randomKey].key);
     };
 
     return (
@@ -86,7 +100,9 @@ const Hero = () => {
                             : movie.overview}
                     </Description>
                     <WrapperButton>
-                        <Button>Watch trailer</Button>
+                        <Button onClick={handleGetTrailer}>
+                            Watch trailer
+                        </Button>
                         <ButtonSecond onClick={toggleModal}>
                             More details
                         </ButtonSecond>
@@ -103,6 +119,29 @@ const Hero = () => {
                         toggleModal={toggleModal}
                         genre={genre}
                     />
+                </Modal>
+            )}
+            {isShowTrailer && (
+                <Modal toggleModal={handleGetTrailer} modal={'trailer'}>
+                    {/* <ModalInformation
+                        movie={movie}
+                        toggleModal={toggleModal}
+                        genre={genre}
+                    /> */}
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        className="iframe_video_player"
+                        src={`https://www.youtube.com/embed/${keyTrailer}`}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay;
+              clipboard-write; encrypted-media;
+              gyroscope; picture-in-picture;
+              web-share"
+                        allowFullScreen
+                    ></iframe>
+                    `
                 </Modal>
             )}
         </div>

@@ -22,3 +22,11 @@ export const ModalWrapper = styled.div`
     background: #111;
     box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
 `;
+
+export const ModalClose = styled.img`
+    position: absolute;
+    top: 40px;
+    right: 40px;
+
+    cursor: pointer;
+`;
