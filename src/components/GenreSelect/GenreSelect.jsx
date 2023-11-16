@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'components/Layout/Layout.styled';
 import { getGenre } from 'server/api';
-import { SelectGenre, Option } from './GenreSelect.styled';
+import { Form, SelectGenre, Option, ButtonClear } from './GenreSelect.styled';
 
-const GenreSelect = ({ changeSelectedGenre }) => {
+import clearSelect from '../../images/close-modal.svg';
+
+const GenreSelect = ({ changeSelectedGenre, selectedGenre }) => {
     const [genre, setGenre] = useState([]);
 
     useEffect(() => {
@@ -31,8 +33,13 @@ const GenreSelect = ({ changeSelectedGenre }) => {
 
     return (
         <Container>
-            <form action="">
-                <SelectGenre name="genre" id="" onChange={handleChangeGenre}>
+            <Form>
+                <SelectGenre
+                    name="genre"
+                    id=""
+                    onChange={handleChangeGenre}
+                    value={selectedGenre}
+                >
                     <option key="0" value="Genre">
                         Genre
                     </option>
@@ -43,10 +50,10 @@ const GenreSelect = ({ changeSelectedGenre }) => {
                     ))}
                 </SelectGenre>
 
-                <button type="button" onClick={hangleClear}>
-                    Clear
-                </button>
-            </form>
+                <ButtonClear type="button" onClick={hangleClear}>
+                    <img src={clearSelect} alt="" />
+                </ButtonClear>
+            </Form>
         </Container>
     );
 };

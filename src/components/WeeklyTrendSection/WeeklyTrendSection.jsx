@@ -17,7 +17,7 @@ const WeeklyTrendSection = () => {
 
     useEffect(() => {
         const getMovies = async () => {
-            const data = await getTrendWeekMovies();
+            const data = await getTrendWeekMovies(1);
             setMovies([data.results[0], data.results[1], data.results[2]]);
             // console.log(data.results);
         };

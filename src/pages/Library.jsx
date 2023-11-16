@@ -25,52 +25,81 @@ const Library = () => {
         getGenres();
     }, []);
 
+    // const visibleMovies = () => {
+    //     if (selectedGenre === '') {
+    //         return favoriteMovies;
+    //     }
+
+    //     const visMovies = favoriteMovies.filter(item => {
+    //         if (item.genres) {
+    //             const sel = item.genres.filter(
+    //                 genre => genre.name === selectedGenre
+    //             );
+
+    //             if (sel.length) {
+    //                 return item;
+    //             } else {
+    //                 return false;
+    //             }
+    //         } else {
+    //             const genreee = [];
+
+    //             for (let i = 0; i < allGenres.length; i++) {
+    //                 for (let j = 0; j < item.genre_ids.length; j++) {
+    //                     if (allGenres[i].id === item.genre_ids[j]) {
+    //                         genreee.push(allGenres[i].name);
+    //                     }
+    //                 }
+    //             }
+
+    //             const sel = genreee.filter(genre => genre === selectedGenre);
+
+    //             if (sel.length) {
+    //                 return item;
+    //             } else {
+    //                 return false;
+    //             }
+    //         }
+    //     });
+
+    //     return visMovies;
+    // };
+
+    // console.log(visibleMovies());
+
     const visibleMovies = () => {
         if (selectedGenre === '') {
             return favoriteMovies;
         }
 
         const visMovies = favoriteMovies.filter(item => {
-            if (item.genres) {
-                const sel = item.genres.filter(
-                    genre => genre.name === selectedGenre
-                );
+            const genres = item.genres
+                ? item.genres.map(genre => genre.name)
+                : [];
 
-                if (sel.length) {
-                    return item;
-                } else {
-                    return false;
-                }
-            } else {
-                const genreee = [];
+            const hasSelectedGenre =
+                genres.includes(selectedGenre) ||
+                (item.genre_ids &&
+                    item.genre_ids.some(id =>
+                        allGenres.some(
+                            genre =>
+                                genre.id === id && genre.name === selectedGenre
+                        )
+                    ));
 
-                for (let i = 0; i < allGenres.length; i++) {
-                    for (let j = 0; j < item.genre_ids.length; j++) {
-                        if (allGenres[i].id === item.genre_ids[j]) {
-                            genreee.push(allGenres[i].name);
-                        }
-                    }
-                }
-
-                const sel = genreee.filter(genre => genre === selectedGenre);
-
-                if (sel.length) {
-                    return item;
-                } else {
-                    return false;
-                }
-            }
+            return hasSelectedGenre;
         });
 
         return visMovies;
     };
 
-    // console.log(visibleMovies());
-
     return (
         <div>
             <Hero />
-            <GenreSelect changeSelectedGenre={changeSelectedGenre} />
+            <GenreSelect
+                changeSelectedGenre={changeSelectedGenre}
+                selectedGenre={selectedGenre}
+            />
             <MoviesList
                 movies={visibleMovies()}
                 selectedGenre={selectedGenre}

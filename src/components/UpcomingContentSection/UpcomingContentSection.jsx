@@ -77,7 +77,6 @@ const UpcomingContentSection = ({ movie, genre, width, modal }) => {
             dispatch(addFavorite(movie));
             setInFavorite(true);
         }
-        console.log('object');
     };
 
     return (

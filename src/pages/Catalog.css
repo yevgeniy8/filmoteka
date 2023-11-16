@@ -1,0 +1,39 @@
+.App {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 16px; */
+    /* width: 100vw; */
+    padding-top: 60px;
+}
+
+.paginationBttns {
+    /* width: 80%; */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.paginationBttns li {
+    /* width: 40px;
+    height: 40px; */
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #B7B7B7;
+}
+
+.paginationBttns a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+li.paginationActive {
+    background: var(--linear, linear-gradient(141deg, #FFC226 9.4%, #F84119 91.91%));
+    border: none;
+}

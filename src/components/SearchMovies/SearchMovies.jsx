@@ -9,14 +9,16 @@ import search from '../../images/search3.svg';
 import { Form, Input, Button } from './SearchMovies.styled';
 
 const SearchMovies = ({ onSubmit }) => {
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState();
 
     const handleSubmit = evt => {
         evt.preventDefault();
         // console.log(evt.target.elements.search.value);
         const movie = evt.target.elements.search.value;
+        // console.log(startDate);
+        // console.log(startDate?.getFullYear());
         // console.log(onSubmit);
-        onSubmit(movie);
+        onSubmit({ movie, year: startDate?.getFullYear() });
         evt.target.reset();
     };
 
@@ -30,6 +32,7 @@ const SearchMovies = ({ onSubmit }) => {
                     showYearPicker
                     dateFormat="yyyy"
                     yearDropdownItemNumber={1}
+                    placeholderText="Year"
                 />
                 <Button type="submit">
                     <img src={search} alt="" />

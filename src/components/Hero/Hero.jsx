@@ -36,6 +36,7 @@ const Hero = () => {
                 data.results[randomMovie].id
             );
             setMovie(details);
+            // console.log(details);
 
             // const response = await getMovieTrailer(details.id);
             // console.log(response);
@@ -72,13 +73,13 @@ const Hero = () => {
         }
         setIsShowTrailer(true);
         const response = await getMovieTrailer(movie.id);
-        console.log(response.results);
+        // console.log(response.results);
 
         const randomKey = Math.floor(
             Math.random() * (response.results.length - 1 - 1 + 1) + 1
         );
 
-        console.log(response.results[randomKey].key);
+        // console.log(response.results[randomKey].key);
 
         setKeyTrailer(response.results[randomKey].key);
     };
@@ -109,7 +110,10 @@ const Hero = () => {
                     </WrapperButton>
                 </Information>
                 <HeroBack
-                    src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                    src={
+                        movie.backdrop_path &&
+                        `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
+                    }
                 ></HeroBack>
             </div>
             {isShowModal && (
