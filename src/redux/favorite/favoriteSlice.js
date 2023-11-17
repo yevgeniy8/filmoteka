@@ -9,7 +9,7 @@ const favoriteMoviesSlice = createSlice({
     initialState: initialState,
     reducers: {
         addFavorite: (state, action) => {
-            console.log(action);
+            // console.log(action);
             state.favoriteMovies.push(action.payload);
         },
         removeFavorite: (state, action) => {

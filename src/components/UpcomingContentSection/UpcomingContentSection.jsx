@@ -21,44 +21,6 @@ import { useSelector, useDispatch } from 'react-redux';
 const UpcomingContentSection = ({ movie, genre, width, modal }) => {
     const [inFavorite, setInFavorite] = useState(false);
 
-    // const [favoriteMovie, setFavoriteMovie] = useState(() => {
-    //     return JSON.parse(localStorage.getItem('favoriteMovie')) || [];
-    // });
-
-    // useEffect(() => {
-    //     localStorage.setItem('favoriteMovie', JSON.stringify(favoriteMovie));
-    // }, [favoriteMovie]);
-
-    // useEffect(() => {
-    //     if (
-    //         favoriteMovie?.filter(
-    //             favoriteMovie => movie.id === favoriteMovie.id
-    //         ).length
-    //     ) {
-    //         setInFavorite(true);
-    //     }
-    // }, [favoriteMovie, movie.id]);
-
-    // const handleClickLibrary = () => {
-    //     if (favoriteMovie?.filter(item => item.id === movie.id).length) {
-    //         console.log('object');
-    //         setInFavorite(false);
-
-    //         setFavoriteMovie(prevState => {
-    //             return prevState.filter(item => item.id !== movie.id);
-    //         });
-
-    //         // setFavoriteMovies(prevState => {
-    //         //     return prevState.filter(item => item.id !== movie.id);
-    //         // });
-
-    //         return;
-    //     }
-
-    //     setInFavorite(true);
-    //     setFavoriteMovie(prevState => [...prevState, movie]);
-    // };
-
     const dispatch = useDispatch();
 
     const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
@@ -101,13 +63,7 @@ const UpcomingContentSection = ({ movie, genre, width, modal }) => {
                 <Popularity>{Number(movie.popularity).toFixed(2)}</Popularity>
             </P>
             <PLast>
-                Genre{' '}
-                {/* <Genre>
-                    {genre.join(', ').length > 25
-                        ? genre.join(', ').slice(0, 25) + '...'
-                        : genre.join(', ')}
-                </Genre> */}
-                <Genre>{genre.join(', ')}</Genre>
+                Genre <Genre>{genre.join(', ')}</Genre>
             </PLast>
             <About>About</About>
             <OverviewAbout width={width} modal={modal}>

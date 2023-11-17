@@ -44,7 +44,6 @@ const Layout = () => {
                                 <img src={temaDark} alt="" />
                             </Background>
                         )}
-                        {/* <button>Peremikach</button> */}
                     </div>
                 </Header>
             </Container>

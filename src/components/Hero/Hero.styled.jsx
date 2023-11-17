@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const HeroBack = styled.div`
     color: white;
@@ -82,9 +83,65 @@ export const Button = styled.button`
     cursor: pointer;
 `;
 
+export const StyledLink = styled(Link)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 139px;
+    height: 48px;
+    border-radius: 74px;
+    gap: 10px;
+    outline: none;
+    border: none;
+    text-decoration: none;
+
+    margin-top: 32px;
+
+    background: var(
+        --linear,
+        linear-gradient(141deg, #ffc226 9.4%, #f84119 91.91%)
+    );
+
+    color: #111;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+
+    cursor: pointer;
+`;
+
 export const ButtonSecond = styled(Button)`
     border: 1px solid #fff;
     background: #111;
 
     color: #fff;
+`;
+
+export const WrapperContent = styled.div`
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 100px;
+`;
+
+export const ContentTrailer = styled.p`
+    margin-bottom: 10px;
+    color: #fff;
+    font-family: Roboto;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`;
+
+export const ImageTrailer = styled.img`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    width: 400px;
+    height: 330px;
 `;

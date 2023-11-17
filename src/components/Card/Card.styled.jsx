@@ -38,6 +38,10 @@ export const Title = styled.h2`
 `;
 
 export const Genre = styled.p`
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     font-family: Roboto;
     font-size: 20px;
     font-weight: 500;
