@@ -50,7 +50,6 @@ export const getGenre = async () => {
 };
 
 export const getMoviesForName = async (movie, page, year) => {
-    console.log(year);
     const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=${page}&year=${year}`,
         options

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import logo from '../../images/Frame 770814.svg';
-import temaLight from '../../images/desktop/Component 20.svg';
-import temaDark from '../../images/desktop/Group 770844.svg';
+// import temaLight from '../../images/desktop/Component 20.svg';
+// import temaDark from '../../images/desktop/Group 770844.svg';
 
 import {
     LinkLogo,
@@ -16,7 +16,8 @@ import {
 } from './Layout.styled';
 
 const Layout = () => {
-    const [tema, setTema] = useState(true);
+    // const [tema, setTema] = useState(true);
+
     return (
         <Background>
             <Container>
@@ -34,7 +35,7 @@ const Layout = () => {
                             My library
                         </NavigationLink>
                     </Navigation>
-                    <div>
+                    {/* <div>
                         {tema ? (
                             <Background onClick={() => setTema(false)}>
                                 <img src={temaLight} alt="" />
@@ -44,7 +45,7 @@ const Layout = () => {
                                 <img src={temaDark} alt="" />
                             </Background>
                         )}
-                    </div>
+                    </div> */}
                 </Header>
             </Container>
 

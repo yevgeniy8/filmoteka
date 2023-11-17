@@ -71,10 +71,6 @@ const Hero = () => {
             Math.random() * (response.results.length - 1 - 1 + 1) + 1
         );
 
-        console.log(response);
-
-        console.log(randomKey);
-
         setKeyTrailer(response.results[randomKey]?.key);
     };
 

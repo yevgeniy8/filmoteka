@@ -18,7 +18,8 @@ const SearchMovies = ({ onSubmit }) => {
         // console.log(startDate);
         // console.log(startDate?.getFullYear());
         // console.log(onSubmit);
-        onSubmit({ movie, year: startDate?.getFullYear() });
+        // console.log(startDate);
+        onSubmit({ movie, year: startDate ? startDate.getFullYear() : null });
         setStartDate('');
         evt.target.reset();
     };

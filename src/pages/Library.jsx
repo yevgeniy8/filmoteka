@@ -96,10 +96,15 @@ const Library = () => {
     return (
         <div>
             <Hero />
-            <GenreSelect
-                changeSelectedGenre={changeSelectedGenre}
-                selectedGenre={selectedGenre}
-            />
+            {favoriteMovies.length ? (
+                <GenreSelect
+                    changeSelectedGenre={changeSelectedGenre}
+                    selectedGenre={selectedGenre}
+                />
+            ) : (
+                ''
+            )}
+
             <MoviesList
                 movies={visibleMovies()}
                 selectedGenre={selectedGenre}
