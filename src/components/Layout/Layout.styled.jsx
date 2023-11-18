@@ -87,3 +87,14 @@ export const GitHubRef = styled.a`
         color: #f87719;
     }
 `;
+
+export const ScrollUp = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #f87719;
+    box-shadow: 1px 1px 14px 2px #ff6b086b;
+`;

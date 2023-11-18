@@ -14,7 +14,10 @@ import {
     Background,
     Footer,
     GitHubRef,
+    ScrollUp,
 } from './Layout.styled';
+
+import ScrollToTop from 'react-scroll-up';
 
 const Layout = () => {
     // const [tema, setTema] = useState(true);
@@ -63,6 +66,10 @@ const Layout = () => {
                     </GitHubRef>
                 </Footer>
             </Container>
+
+            <ScrollToTop showUnder={160} easing="easeInOutQuad">
+                <ScrollUp>Up</ScrollUp>
+            </ScrollToTop>
         </Background>
     );
 };
