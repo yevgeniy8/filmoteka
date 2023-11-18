@@ -13,9 +13,19 @@ const Catalog = () => {
     const [totalPages, setTotalPages] = useState(500);
     const [search, setSearch] = useState('trend');
     const [dataSearch, setDataSearch] = useState('');
+    const [update, setUpdate] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
+        const getMovies = async () => {
+            const data = await getTrendWeekMovies(1);
+            setMovies(data.results);
+        };
+
+        getMovies();
     }, []);
 
     const handlePageClick = async event => {
@@ -36,8 +46,23 @@ const Catalog = () => {
     };
 
     const searchSumbit = ({ movie, year }) => {
+        setUpdate(false);
+        if (!movie) {
+            const getMovies = async () => {
+                const data = await getTrendWeekMovies(1);
+                setMovies(data.results);
+                setTotalPages(500);
+                setSearch('trend');
+                setUpdate(true);
+                // setInitialPage(0);
+            };
+
+            getMovies();
+            return;
+        }
         const getMovie = async () => {
             const result = await getMoviesForName(movie, 1, year);
+            // setInitialPage(0);
             setDataSearch(movie);
             setSearch('name');
             setMovies(result.results);
@@ -47,37 +72,50 @@ const Catalog = () => {
         getMovie();
     };
 
-    useEffect(() => {
-        const getMovies = async () => {
-            const data = await getTrendWeekMovies(1);
-            setMovies(data.results);
-        };
-
-        getMovies();
-    }, []);
-
     return (
         <div>
             <Hero />
             <SearchMovies onSubmit={searchSumbit} />
             <MoviesList movies={movies} />
             {movies.length ? (
-                <div className="App">
-                    <ReactPaginate
-                        nextLabel=">"
-                        onPageChange={handlePageClick}
-                        pageRangeDisplayed={3}
-                        marginPagesDisplayed={2}
-                        pageCount={totalPages}
-                        previousLabel="<"
-                        breakLabel="..."
-                        containerClassName={'paginationBttns'}
-                        previousLinkClassName={'previousBttn'}
-                        nextLinkClassName={'nextBttn'}
-                        disabledClassName={'paginationDisabled'}
-                        activeClassName={'paginationActive'}
-                    />
-                </div>
+                !update ? (
+                    <div className="App">
+                        <ReactPaginate
+                            // initialPage={0}
+                            // forcePage={initialPage}
+                            nextLabel=">"
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={3}
+                            marginPagesDisplayed={2}
+                            pageCount={totalPages}
+                            previousLabel="<"
+                            breakLabel="..."
+                            containerClassName={'paginationBttns'}
+                            previousLinkClassName={'previousBttn'}
+                            nextLinkClassName={'nextBttn'}
+                            disabledClassName={'paginationDisabled'}
+                            activeClassName={'paginationActive'}
+                        />
+                    </div>
+                ) : (
+                    <div className="App">
+                        <ReactPaginate
+                            forcePage={0}
+                            nextLabel=">"
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={3}
+                            marginPagesDisplayed={2}
+                            pageCount={totalPages}
+                            previousLabel="<"
+                            breakLabel="..."
+                            containerClassName={'paginationBttns'}
+                            previousLinkClassName={'previousBttn'}
+                            nextLinkClassName={'nextBttn'}
+                            disabledClassName={'paginationDisabled'}
+                            activeClassName={'paginationActive'}
+                        />
+                    </div>
+                )
             ) : (
                 ''
             )}

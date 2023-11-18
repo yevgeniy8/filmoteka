@@ -2,6 +2,13 @@ import styled from '@emotion/styled';
 
 export const Li = styled.li`
     position: relative;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 1px 1px 14px 2px #ff6b086b;
+        transform: scale(1.03);
+    }
 `;
 
 export const Gradient = styled.div`

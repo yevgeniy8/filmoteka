@@ -52,6 +52,11 @@ export const Button = styled.button`
 
     margin-left: 16px;
     cursor: pointer;
+
+    &:hover {
+        background: #111;
+        border: 1px solid #f84119;
+    }
 `;
 
 export const DatePickerStyled = styled(ReactDatePicker)`

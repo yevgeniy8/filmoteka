@@ -8,20 +8,29 @@ import search from '../../images/search3.svg';
 
 import { Form, Input, Button } from './SearchMovies.styled';
 
+import { RxUpdate } from 'react-icons/rx';
+
+import Notiflix from 'notiflix';
+
 const SearchMovies = ({ onSubmit }) => {
     const [startDate, setStartDate] = useState();
 
     const handleSubmit = evt => {
         evt.preventDefault();
-        // console.log(evt.target.elements.search.value);
         const movie = evt.target.elements.search.value;
-        // console.log(startDate);
-        // console.log(startDate?.getFullYear());
-        // console.log(onSubmit);
-        // console.log(startDate);
+
+        // console.log(evt.target.elements.search.value);
+        if (!evt.target.elements.search.value) {
+            return Notiflix.Notify.failure('Please enter the movie title');
+        }
+
         onSubmit({ movie, year: startDate ? startDate.getFullYear() : null });
         setStartDate('');
         evt.target.reset();
+    };
+
+    const handleUpdate = () => {
+        onSubmit({ movie: '' });
     };
 
     return (
@@ -38,6 +47,9 @@ const SearchMovies = ({ onSubmit }) => {
                 />
                 <Button type="submit">
                     <img src={search} alt="" />
+                </Button>
+                <Button type="button" onClick={handleUpdate}>
+                    <RxUpdate size={20} color="#fff" />
                 </Button>
             </Form>
         </Container>

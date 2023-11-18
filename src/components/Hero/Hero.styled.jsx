@@ -81,6 +81,24 @@ export const Button = styled.button`
     line-height: 24px; /* 150% */
 
     cursor: pointer;
+
+    /* transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+
+    &:hover {
+        color: #f84119;
+        background: var(
+            --linear,
+            linear-gradient(141deg, #111110 9.4%, #1b1615 91.91%)
+        );
+        border: 1px solid #f84119;
+    }
+`;
+
+export const ButtonSecond = styled(Button)`
+    border: 1px solid #fff;
+    background: #111;
+
+    color: #fff;
 `;
 
 export const StyledLink = styled(Link)`
@@ -111,13 +129,12 @@ export const StyledLink = styled(Link)`
     line-height: 24px; /* 150% */
 
     cursor: pointer;
-`;
 
-export const ButtonSecond = styled(Button)`
-    border: 1px solid #fff;
-    background: #111;
-
-    color: #fff;
+    &:hover {
+        background: #111;
+        color: #fff;
+        border: 1px solid #f84119;
+    }
 `;
 
 export const WrapperContent = styled.div`

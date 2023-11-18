@@ -39,4 +39,10 @@ export const ButtonSeeAll = styled(NavLink)`
     background-color: black;
     color: #f87719;
     cursor: pointer;
+    
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        color: #fff;
+    }
 `;

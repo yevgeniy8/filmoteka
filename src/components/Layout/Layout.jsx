@@ -13,6 +13,7 @@ import {
     NavigationLink,
     Background,
     Footer,
+    GitHubRef,
 } from './Layout.styled';
 
 const Layout = () => {
@@ -52,7 +53,15 @@ const Layout = () => {
             <Outlet />
 
             <Container>
-                <Footer>Yevgeniy Utkin github</Footer>
+                <Footer>
+                    Yevgeniy Utkin
+                    <GitHubRef
+                        target="_blank"
+                        href="https://github.com/yevgeniy8"
+                    >
+                        github
+                    </GitHubRef>
+                </Footer>
             </Container>
         </Background>
     );

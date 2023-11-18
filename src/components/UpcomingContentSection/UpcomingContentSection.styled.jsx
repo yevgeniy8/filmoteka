@@ -145,4 +145,11 @@ export const ButtonLibrary = styled.button`
     padding: 12px 24px 12px 24px;
     border: none;
     outline: none;
+    cursor: pointer;
+
+    &:hover {
+        background: #111;
+        color: #ffffff;
+        border: 1px solid #f84119;
+    }
 `;

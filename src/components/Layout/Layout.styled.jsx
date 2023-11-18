@@ -55,6 +55,11 @@ export const NavigationLink = styled(NavLink)`
     text-align: center;
     text-transform: uppercase;
     color: #b7b7b7;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        color: #f87719;
+    }
 
     &.active {
         color: #f87719;
@@ -65,4 +70,20 @@ export const Footer = styled.footer`
     margin-top: 100px;
     margin-bottom: 80px;
     text-align: center;
+    font-size: 18px;
+    color: #b7b7b7;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`;
+
+export const GitHubRef = styled.a`
+    /* text-decoration: none; */
+    color: inherit;
+    margin-left: 5px;
+
+    &:hover {
+        color: #f87719;
+    }
 `;

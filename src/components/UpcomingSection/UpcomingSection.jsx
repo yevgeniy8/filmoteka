@@ -67,9 +67,9 @@ const UpcomingSection = () => {
                     <WrapperImage>
                         <Image
                             src={
-                                movie.backdrop_path
-                                    ? `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
-                                    : movie.title
+                                movie.backdrop_path &&
+                                `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
+                                // : movie.title
                             }
                             alt=""
                             width={805}
